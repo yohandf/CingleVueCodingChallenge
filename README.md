@@ -16,7 +16,15 @@ Java 1.7<br>
 
 
 ## Instraction <br>
-Mongodb connection - ebsystique.springmvc.db.DbConnection.java <br>
+Mongodb connection - websystique.springmvc.db.DbConnection.java <br>
+
+## Running the project <br>
+Run the maven target to build<br>
+(mvn clean install)<br><br>
+
+Deploy the war file in tomcat 
+
+
 
 
 ## References<br>
