@@ -18,7 +18,7 @@ import com.websystique.springmvc.model.User;
 import com.websystique.springmvc.service.UserService;
  
 @RestController
-public class HelloWorldRestController {
+public class UserRestController {
  
     @Autowired
     UserService userService;  //Service which will do all data retrieval/manipulation work
