@@ -18,6 +18,4 @@ public interface UserDAO {
 	List<User> findAllUsers(); 
 	
 	void deleteAllUsers();
-	
-	public boolean isUserExist(User user);
 }

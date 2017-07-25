@@ -7,59 +7,41 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.stereotype.Service;
 
+import com.websystique.springmvc.dao.UserDAO;
+import com.websystique.springmvc.dao.UserDAOImpl;
 import com.websystique.springmvc.model.User;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
 	
-	private static final AtomicLong counter = new AtomicLong();
-	
-	private static List<User> users;
-	
-	static{
-		users= populateDummyUsers();
-	}
-
 	public List<User> findAllUsers() {
-		return users;
+		UserDAO userDao  = new UserDAOImpl();
+		return userDao.findAllUsers();
 	}
 	
 	public User findById(long id) {
-		for(User user : users){
-			if(user.getId() == id){
-				return user;
-			}
-		}
-		return null;
+		UserDAO userDao  = new UserDAOImpl();
+		return userDao.findById(id);
 	}
 	
 	public User findByName(String name) {
-		for(User user : users){
-			if(user.getUsername().equalsIgnoreCase(name)){
-				return user;
-			}
-		}
-		return null;
+		UserDAO userDao  = new UserDAOImpl();
+		return userDao.findByName(name);
 	}
 	
 	public void saveUser(User user) {
-		user.setId(counter.incrementAndGet());
-		users.add(user);
+		UserDAO userDao  = new UserDAOImpl();
+		userDao.saveUser(user);
 	}
 
 	public void updateUser(User user) {
-		int index = users.indexOf(user);
-		users.set(index, user);
+		UserDAO userDao  = new UserDAOImpl();
+		userDao.updateUser(user);
 	}
 
 	public void deleteUserById(long id) {
-		
-		for (Iterator<User> iterator = users.iterator(); iterator.hasNext(); ) {
-		    User user = iterator.next();
-		    if (user.getId() == id) {
-		        iterator.remove();
-		    }
-		}
+		UserDAO userDao  = new UserDAOImpl();
+		userDao.deleteUserById(id);
 	}
 
 	public boolean isUserExist(User user) {
@@ -67,15 +49,9 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	public void deleteAllUsers(){
-		users.clear();
+		UserDAO userDao  = new UserDAOImpl();
+		userDao.deleteAllUsers();
 	}
 
-	private static List<User> populateDummyUsers(){
-		List<User> users = new ArrayList<User>();
-		users.add(new User(counter.incrementAndGet(),"Sam", "NY", "sam@abc.com"));
-		users.add(new User(counter.incrementAndGet(),"Tomy", "ALBAMA", "tomy@abc.com"));
-		users.add(new User(counter.incrementAndGet(),"Kelly", "NEBRASKA", "kelly@abc.com"));
-		return users;
-	}
 
 }
